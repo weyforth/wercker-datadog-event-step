@@ -24,7 +24,7 @@ then
   ALERT_TYPE="success"
 else
   ALERT_TYPE="error"
-  MESSAGE="$MESSAGE\n$WERCKER_FAILED_STEP_DISPLAY_NAME step failed"
+  MESSAGE="$MESSAGE at step *$WERCKER_FAILED_STEP_DISPLAY_NAME*"
 fi
 
 # message = "[deploy](#{@build.deploy_url}) to #{@build.deploytarget_name}" if @build.is_deploy?
