@@ -27,11 +27,6 @@ else
   MESSAGE="$MESSAGE at step *$WERCKER_FAILED_STEP_DISPLAY_NAME*"
 fi
 
-# message = "[deploy](#{@build.deploy_url}) to #{@build.deploytarget_name}" if @build.is_deploy?
-# message += " for [#{@build.git_owner}/#{@build.git_repo}](#{@build.app_url})"
-# message += " by #{@build.started_by} has #{@build.result}"
-
-
 curl  -X POST -H "Content-type: application/json" \
 -d "{
       \"title\": \"$TITLE\",
@@ -39,7 +34,15 @@ curl  -X POST -H "Content-type: application/json" \
       \"priority\": \"$WERCKER_DATADOG_NOTIFY_PRIORITY\",
       \"alert_type\": \"$ALERT_TYPE\",
       \"tags\": [
-        \"app_name:$WERCKER_APPLICATION_NAME\"
+        \"app_ownser:$WERCKER_APPLICATION_OWNER_NAME\",
+        \"app_name:$WERCKER_APPLICATION_NAME\",
+        \"started_by:$WERCKER_STARTED_BY\",
+        \"result:$WERCKER_RESULT\",
+        \"git_owner:$WERCKER_GIT_OWNER\",
+        \"git_repo:$WERCKER_GIT_REPOSITORY\",
+        \"git_commit:$WERCKER_GIT_COMMIT\",
+        \"git_branch:$WERCKER_GIT_BRANCH\",
+        \"git_domain:$WERCKER_GIT_DOMAIN\"
       ],
       \"source_type_name\": \"wercker\"
   }" \
