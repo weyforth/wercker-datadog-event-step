@@ -8,13 +8,6 @@ if [ ! -n "$WERCKER_DATADOG_NOTIFY_PRIORITY" ]; then
   exit 1
 fi
 
-if [ "$WERCKER_RESULT" == "passed" ]
-then
-  ALERT_TYPE="success"
-else
-  ALERT_TYPE="error"
-fi
-
 TITLE="$WERCKER_APPLICATION_OWNER_NAME/$WERCKER_APPLICATION_NAME"
 
 if [ "$DEPLOY" == "true" ]
@@ -26,6 +19,14 @@ fi
 
 MESSAGE="$MESSAGE $WERCKER_RESULT"
 
+if [ "$WERCKER_RESULT" == "passed" ]
+then
+  ALERT_TYPE="success"
+else
+  ALERT_TYPE="error"
+  MESSAGE="$MESSAGE\n$WERCKER_FAILED_STEP_DISPLAY_NAME step failed"
+fi
+
 # message = "[deploy](#{@build.deploy_url}) to #{@build.deploytarget_name}" if @build.is_deploy?
 # message += " for [#{@build.git_owner}/#{@build.git_repo}](#{@build.app_url})"
 # message += " by #{@build.started_by} has #{@build.result}"
@@ -33,12 +34,12 @@ MESSAGE="$MESSAGE $WERCKER_RESULT"
 
 curl  -X POST -H "Content-type: application/json" \
 -d "{
-      \"title\":            \"$TITLE\",
-      \"text\":             \"%%% \n $MESSAGE \n %%%\",
-      \"priority\":         \"$WERCKER_DATADOG_NOTIFY_PRIORITY\",
-      \"alert_type\":       \"$ALERT_TYPE\",
+      \"title\": \"$TITLE\",
+      \"text\": \"%%% \n $MESSAGE \n %%%\",
+      \"priority\": \"$WERCKER_DATADOG_NOTIFY_PRIORITY\",
+      \"alert_type\": \"$ALERT_TYPE\",
       \"tags\": [
-          \"app_name:              $WERCKER_APPLICATION_NAME\"
+        \"app_name:$WERCKER_APPLICATION_NAME\"
       ],
       \"source_type_name\": \"wercker\"
   }" \
