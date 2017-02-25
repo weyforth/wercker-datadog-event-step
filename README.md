@@ -11,7 +11,7 @@ Send a notification event to datadog
 
     build:
         after-steps:
-            - datadog-notify:
+            - weyforth/datadog-notify:
                 token: $DATADOG_TOKEN
                 priority: normal
 
