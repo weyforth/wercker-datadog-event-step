@@ -38,7 +38,7 @@ curl  -X POST -H "Content-type: application/json" \
       \"priority\":         \"$WERCKER_DATADOG_NOTIFY_PRIORITY\",
       \"alert_type\":       \"$ALERT_TYPE\",
       \"tags\": [
-          \"app_name:              $WERCKER_APPLICATION_NAME\",
+          \"app_name:              $WERCKER_APPLICATION_NAME\"
       ],
       \"source_type_name\": \"wercker\"
   }" \
