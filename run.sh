@@ -1,9 +1,9 @@
-if [ ! -n "$WERCKER_DATADOG_EVENT_TOKEN" ]; then
+if [ ! -n "$WERCKER_DATADOG_NOTIFY_TOKEN" ]; then
   error 'Please specify token property'
   exit 1
 fi
 
-if [ ! -n "$WERCKER_DATADOG_EVENT_PRIORITY" ]; then
+if [ ! -n "$WERCKER_DATADOG_NOTIFY_PRIORITY" ]; then
   error 'Please specify priority property'
   exit 1
 fi
@@ -35,14 +35,14 @@ curl  -X POST -H "Content-type: application/json" \
 -d "{
       \"title\":            \"$TITLE\",
       \"text\":             \"$MESSAGE\",
-      \"priority\":         \"$WERCKER_DATADOG_EVENT_PRIORITY\",
+      \"priority\":         \"$WERCKER_DATADOG_NOTIFY_PRIORITY\",
       \"alert_type\":       \"$ALERT_TYPE\",
       \"tags\": [
           \"app_name:              $WERCKER_APPLICATION_NAME\",
       ],
       \"source_type_name\": \"wercker\"
   }" \
-"https://app.datadoghq.com/api/v1/events?api_key=$WERCKER_DATADOG_EVENT_TOKEN"
+"https://app.datadoghq.com/api/v1/events?api_key=$WERCKER_DATADOG_NOTIFY_TOKEN"
 
 #
 # \"build_url:            $WERCKER_APPLICATION_URL\",
