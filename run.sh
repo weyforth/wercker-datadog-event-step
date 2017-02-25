@@ -34,7 +34,7 @@ MESSAGE="$MESSAGE $WERCKER_RESULT"
 curl  -X POST -H "Content-type: application/json" \
 -d "{
       \"title\":            \"$TITLE\",
-      \"text\":             \"$MESSAGE\",
+      \"text\":             \"%%% \n $MESSAGE \n %%%\",
       \"priority\":         \"$WERCKER_DATADOG_NOTIFY_PRIORITY\",
       \"alert_type\":       \"$ALERT_TYPE\",
       \"tags\": [
