@@ -34,7 +34,7 @@ curl  -X POST -H "Content-type: application/json" \
       \"priority\": \"$WERCKER_DATADOG_NOTIFY_PRIORITY\",
       \"alert_type\": \"$ALERT_TYPE\",
       \"tags\": [
-        \"app_ownser:$WERCKER_APPLICATION_OWNER_NAME\",
+        \"app_owner:$WERCKER_APPLICATION_OWNER_NAME\",
         \"app_name:$WERCKER_APPLICATION_NAME\",
         \"started_by:$WERCKER_STARTED_BY\",
         \"result:$WERCKER_RESULT\",
