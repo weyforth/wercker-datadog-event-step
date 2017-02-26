@@ -48,7 +48,7 @@ curl  -X POST -H "Content-type: application/json" \
         \"git_branch:$WERCKER_GIT_BRANCH\",
         \"git_domain:$WERCKER_GIT_DOMAIN\"
       ],
-      \"source_type_name\": \"jenkins\"
+      \"source_type_name\": \"my apps\"
   }" \
 "https://app.datadoghq.com/api/v1/events?api_key=$WERCKER_DATADOG_NOTIFY_TOKEN"
 
