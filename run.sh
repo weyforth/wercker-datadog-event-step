@@ -13,8 +13,10 @@ TITLE="$WERCKER_APPLICATION_OWNER_NAME/$WERCKER_APPLICATION_NAME"
 if [ "$DEPLOY" == "true" ]
 then
   MESSAGE="[Deploy]($WERCKER_DEPLOY_URL)"
+  PIPELINE="deploy"
 else
   MESSAGE="[Build]($WERCKER_BUILD_URL)"
+  PIPELINE="build"
 fi
 
 MESSAGE="$MESSAGE $WERCKER_RESULT"
@@ -34,6 +36,7 @@ curl  -X POST -H "Content-type: application/json" \
       \"priority\": \"$WERCKER_DATADOG_NOTIFY_PRIORITY\",
       \"alert_type\": \"$ALERT_TYPE\",
       \"tags\": [
+        \"pipline:$PIPELINE\",
         \"app_owner:$WERCKER_APPLICATION_OWNER_NAME\",
         \"app_name:$WERCKER_APPLICATION_NAME\",
         \"started_by:$WERCKER_STARTED_BY\",
