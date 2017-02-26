@@ -37,7 +37,7 @@ curl  -X POST -H "Content-type: application/json" \
       \"alert_type\": \"$ALERT_TYPE\",
       \"tags\": [
         \"ci:wercker\",
-        \"pipline:$PIPELINE\",
+        \"pipeline:$PIPELINE\",
         \"app_owner:$WERCKER_APPLICATION_OWNER_NAME\",
         \"app_name:$WERCKER_APPLICATION_NAME\",
         \"started_by:$WERCKER_STARTED_BY\",

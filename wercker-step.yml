@@ -1,5 +1,5 @@
 name: datadog-notify
-version: 1.0.14
+version: 1.0.15
 description: Send notification to Datadog
 keywords:
   - notification
