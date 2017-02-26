@@ -36,6 +36,7 @@ curl  -X POST -H "Content-type: application/json" \
       \"priority\": \"$WERCKER_DATADOG_NOTIFY_PRIORITY\",
       \"alert_type\": \"$ALERT_TYPE\",
       \"tags\": [
+        \"ci:wercker\",
         \"pipline:$PIPELINE\",
         \"app_owner:$WERCKER_APPLICATION_OWNER_NAME\",
         \"app_name:$WERCKER_APPLICATION_NAME\",
@@ -47,7 +48,7 @@ curl  -X POST -H "Content-type: application/json" \
         \"git_branch:$WERCKER_GIT_BRANCH\",
         \"git_domain:$WERCKER_GIT_DOMAIN\"
       ],
-      \"source_type_name\": \"wercker\"
+      \"source_type_name\": \"jenkins\"
   }" \
 "https://app.datadoghq.com/api/v1/events?api_key=$WERCKER_DATADOG_NOTIFY_TOKEN"
 
